@@ -1,0 +1,28 @@
+# Root-level ignores
+.DS_Store
+Thumbs.db
+
+# Temporary extracted docs/assets
+docx_extracted/
+
+# Runtime logs and crash files
+*.log
+*.out
+hs_err_pid*
+replay_pid*
+
+# Local Gradle caches per service
+**/.gradle-user-home/
+**/.gradle/
+
+# IDE folders
+.idea/
+.vscode/
+
+# Build outputs
+**/build/
+!**/gradle/wrapper/gradle-wrapper.jar
+
+# NetBeans
+**/nbproject/private/
+**/.nb-gradle/
