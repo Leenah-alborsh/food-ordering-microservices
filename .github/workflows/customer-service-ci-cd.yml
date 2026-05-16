@@ -10,7 +10,7 @@ on:
 
 env:
   SERVICE_DIR: customer-service
-  IMAGE_NAME: customer-service
+  IMAGE_NAME: food-ordering-customer-service
 
 jobs:
   build-and-publish:
