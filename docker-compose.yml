@@ -1,0 +1,26 @@
+services:
+  mysql:
+    image: mysql:8.4
+    container_name: food-ordering-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  customer-service:
+    build:
+      context: ./customer-service
+    container_name: customer-service
+    depends_on:
+      - mysql
+    environment:
+      CUSTOMER_DB_URL: jdbc:mysql://mysql:3306/customer_service_db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+      CUSTOMER_DB_USERNAME: root
+      CUSTOMER_DB_PASSWORD: root
+    ports:
+      - "9001:9001"
+
+volumes:
+  mysql_data:

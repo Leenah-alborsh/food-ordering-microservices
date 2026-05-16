@@ -1,0 +1,42 @@
+server:
+  port: 9002
+
+spring:
+  application:
+    name: ordering-service
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${ORDERING_DB_URL:jdbc:mysql://localhost:3306/ordering_service_db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC}
+    username: ${ORDERING_DB_USERNAME:root}
+    password: ${ORDERING_DB_PASSWORD:}
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+customer-service:
+  base-url: ${CUSTOMER_SERVICE_BASE_URL:http://localhost:9001}
+  graphql-url: ${CUSTOMER_SERVICE_GRAPHQL_URL:http://localhost:9001/graphql}
+
+menu-service:
+  base-url: ${MENU_SERVICE_BASE_URL:http://localhost:9003}
+
+payment-service:
+  base-url: ${PAYMENT_SERVICE_BASE_URL:http://localhost:9004}
+
+kitchen-service:
+  base-url: ${KITCHEN_SERVICE_BASE_URL:http://localhost:9005}
+
+delivery-service:
+  base-url: ${DELIVERY_SERVICE_BASE_URL:http://localhost:9006}
+
+grpc:
+  client:
+    customer-service:
+      address: static://localhost:9091
+      negotiation-type: plaintext
